@@ -1,6 +1,5 @@
 /**
- * Main Application Orchestrator
- * Binds DOM elements, renders dynamic data, handles telemetry clock, counters & forms.
+ * Main Application Orchestrator for Lavkush Jaiswal Portfolio
  */
 
 // Toast notification helper
@@ -24,6 +23,7 @@ window.showToast = showToast;
 
 document.addEventListener("DOMContentLoaded", () => {
   initTelemetryHUD();
+  initMobileNav();
   renderHeroStats();
   renderCaseStudies();
   renderSkillsMatrix();
@@ -44,6 +44,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Mobile Nav Drawer Toggle
+function initMobileNav() {
+  const toggle = document.getElementById("mobileNavToggle");
+  const drawer = document.getElementById("mobileNavDrawer");
+
+  if (toggle && drawer) {
+    toggle.addEventListener("click", () => {
+      drawer.classList.toggle("open");
+    });
+
+    drawer.querySelectorAll(".mobile-nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        drawer.classList.remove("open");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!drawer.contains(e.target) && !toggle.contains(e.target)) {
+        drawer.classList.remove("open");
+      }
+    });
+  }
+}
+
 // Telemetry HUD Live Clock & Latency Jitter
 function initTelemetryHUD() {
   const clockEl = document.getElementById("hudClock");
@@ -60,7 +84,7 @@ function initTelemetryHUD() {
 
   function jitterLatency() {
     if (latencyEl) {
-      const jitter = (11.0 + Math.random() * 1.8).toFixed(1);
+      const jitter = (15.5 + Math.random() * 2.2).toFixed(1);
       latencyEl.textContent = `${jitter}ms`;
     }
   }
@@ -119,7 +143,7 @@ function renderCaseStudies() {
       <div class="case-deep-dive">
         <div class="deep-dive-box">
           <h4 class="deep-dive-title" style="color: var(--accent-rose);">
-            <span>⚠️</span> Challenge & Architectural Bottlenecks
+            <span>⚠️</span> Challenge & Automotive Bottlenecks
           </h4>
           <p>${cs.challenge}</p>
         </div>
@@ -240,8 +264,8 @@ function renderPublications() {
         <p class="pub-abstract">${pub.abstract}</p>
       </div>
       <div style="margin-top: 1rem;">
-        <a href="${pub.link}" class="pub-footer" onclick="event.preventDefault(); showToast('Document draft: ${pub.title}');">
-          <span>Read Paper / RFC</span>
+        <a href="${pub.link}" target="_blank" class="pub-footer">
+          <span>Read on GitHub</span>
           <span>→</span>
         </a>
       </div>
@@ -249,7 +273,7 @@ function renderPublications() {
   `).join("");
 }
 
-// Open Source
+// Open Source / Featured Projects
 function renderOpenSource() {
   const container = document.getElementById("ossGrid");
   if (!container) return;
@@ -263,7 +287,7 @@ function renderOpenSource() {
       <div class="oss-role">${oss.role} • <span style="color: var(--text-muted);">${oss.language}</span></div>
       <p class="oss-desc">${oss.description}</p>
       <a href="${oss.link}" target="_blank" class="pub-footer">
-        <span>View Repository</span>
+        <span>View on GitHub</span>
         <span>→</span>
       </a>
     </div>
@@ -286,22 +310,10 @@ function initContactForm() {
       return;
     }
 
-    // Success response simulation
     showToast(`✉️ Thank you, ${name}! Your transmission has been dispatched.`);
     form.reset();
   });
 
-  // Copy PGP Key button
-  const copyPgpBtn = document.getElementById("copyPgpBtn");
-  if (copyPgpBtn) {
-    copyPgpBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(PORTFOLIO_DATA.profile.pgpKey).then(() => {
-        showToast("🔑 PGP Public Key Fingerprint copied to clipboard!");
-      });
-    });
-  }
-
-  // Copy Email button
   const copyEmailBtn = document.getElementById("copyEmailBtn");
   if (copyEmailBtn) {
     copyEmailBtn.addEventListener("click", () => {

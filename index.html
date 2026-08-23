@@ -23,8 +23,8 @@
     .social-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.45rem 0.9rem;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
       border-radius: var(--radius-md);
       font-family: var(--font-mono);
       font-size: 0.8rem;
@@ -34,6 +34,7 @@
       border: 1px solid var(--border-color);
       background: var(--bg-tertiary);
       color: var(--text-primary);
+      white-space: nowrap;
     }
     .social-btn:hover {
       border-color: var(--accent-cyan);
@@ -151,12 +152,13 @@
     <div class="container nav-container">
       <a href="#" class="logo-brand">
         <div class="logo-icon">LJ</div>
-        <div>
+        <div class="logo-text-group">
           <div class="logo-text">Lavkush Jaiswal</div>
           <div class="logo-sub">Senior Android Framework Engineer</div>
         </div>
       </a>
 
+      <!-- Desktop Nav Links -->
       <nav>
         <ul class="nav-links">
           <li><a href="#architecture" class="nav-link">Architecture</a></li>
@@ -184,7 +186,7 @@
 
         <!-- Theme Picker Dropdown -->
         <div class="theme-dropdown">
-          <button class="theme-select-btn" id="themeSelectBtn">
+          <button class="theme-select-btn" id="themeSelectBtn" title="Select Theme">
             <span>🎨</span>
             <span id="currentThemeLabel">Obsidian</span>
             <span>▾</span>
@@ -197,7 +199,25 @@
           <span>📄</span>
           <span>Resume</span>
         </button>
+
+        <!-- Mobile Nav Toggle Button -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">
+          <span>☰</span>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer">
+      <ul class="mobile-nav-links">
+        <li><a href="#architecture" class="mobile-nav-link">🚗 Automotive Architecture</a></li>
+        <li><a href="#casestudies" class="mobile-nav-link">📊 OEM Projects & Case Studies</a></li>
+        <li><a href="#terminal" class="mobile-nav-link">⌨️ Interactive Terminal CLI</a></li>
+        <li><a href="#skills" class="mobile-nav-link">🛠️ Core Technical Skills</a></li>
+        <li><a href="#experience" class="mobile-nav-link">💼 Career Experience</a></li>
+        <li><a href="#tenets" class="mobile-nav-link">⚡ Engineering Tenets</a></li>
+        <li><a href="#contact" class="mobile-nav-link">📬 Contact & Inquiries</a></li>
+      </ul>
     </div>
   </header>
 
@@ -509,7 +529,7 @@ LinkedIn: https://www.linkedin.com/in/lavkush-jaiswal-62825a130/
   <!-- Main Footer -->
   <footer class="main-footer">
     <div class="container">
-      <div style="margin-bottom: 1rem; display: flex; justify-content: center; gap: 1rem;">
+      <div style="margin-bottom: 1rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
         <a href="https://github.com/lavkush0101/" target="_blank" class="social-btn social-btn-github">
           <span>🐙</span> GitHub
         </a>
