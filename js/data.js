@@ -18,9 +18,9 @@ const PORTFOLIO_DATA = {
     linkedin: "https://www.linkedin.com/in/lavkush-jaiswal-62825a130/",
     twitter: "https://github.com/lavkush0101/",
     pgpKey: "8F2C 91B4 77EA D230 4412 8A3E 90B1 CC45 61A2 7DF0",
-    bio: "Senior Android Framework & Embedded Automotive Engineer with 5.5+ years of experience developing In-Vehicle Infotainment (IVI) systems, Android Auto (Wired & Wireless) projection stacks, AOSP customization, and HAL/AIDL middleware integration at Harman International. Proven expertise in SELinux policy security, MediaCodec low-latency video streaming, Binder IPC, system service architecture, and Google PCTS compliance certification.",
+    bio: "Senior Android Framework & Embedded Automotive Engineer with 6.9+ years of experience developing In-Vehicle Infotainment (IVI) systems, Android Auto (Wired & Wireless) projection stacks, AOSP customization, and HAL/AIDL middleware integration at Harman International. Proven expertise in SELinux policy security, MediaCodec low-latency video streaming, Binder IPC, system service architecture, and Google PCTS compliance certification.",
     stats: [
-      { label: "Engineering Exp", value: "5.5+", suffix: "Years", detail: "AOSP, Automotive IVI & Android Framework" },
+      { label: "Total Experience", value: "6.9+", suffix: "Years", detail: "AOSP, Automotive IVI & Android Framework" },
       { label: "Automotive Programs", value: "2+", suffix: "OEM Tiers", detail: "MSIL (Maruti Suzuki) & PSA (Peugeot)" },
       { label: "IVI Features Built", value: "60+", suffix: "Features", detail: "Factory Mode, CAN SW, RVC & Diagnostics" },
       { label: "Compliance & Certs", value: "100%", suffix: "Google PCTS", detail: "Android Auto Wireless & Wired Certification" },
@@ -441,12 +441,12 @@ fun buildOptimizedPlayer(context: Context, surfaceView: SurfaceView): ExoPlayer 
       icon: "cpu",
       description: "AOSP, Automotive OS, HAL/AIDL, and system services",
       items: [
-        { name: "AOSP & AAOS (Automotive)", level: 95, years: "5.5 yrs", highlight: "AOSP builds, System Services, Framework Internals, HMI" },
-        { name: "Android Auto (Wired / Wireless)", level: 96, years: "3+ yrs", highlight: "Wi-Fi P2P, USB Accessory, Google PCTS Certification" },
-        { name: "AIDL & Binder IPC", level: 94, years: "5 yrs", highlight: "Cross-process communication, System Services, IPC Security" },
-        { name: "SELinux Security Policies", level: 90, years: "3 yrs", highlight: "Type enforcement (.te), Domain isolation, Permission controls" },
-        { name: "HAL & JNI Native Layer", level: 88, years: "4 yrs", highlight: "C++ HAL interfaces, JNI bridges, Driver interactions" },
-        { name: "System-Level Debugging", level: 92, years: "5.5 yrs", highlight: "Crash dump analysis, memory leak resolution, logcat/dmesg" }
+        { name: "AOSP & AAOS (Automotive)", level: 95, years: "6.9 yrs", highlight: "AOSP builds, System Services, Framework Internals, HMI" },
+        { name: "Android Auto (Wired / Wireless)", level: 96, years: "4+ yrs", highlight: "Wi-Fi P2P, USB Accessory, Google PCTS Certification" },
+        { name: "AIDL & Binder IPC", level: 94, years: "6.5 yrs", highlight: "Cross-process communication, System Services, IPC Security" },
+        { name: "SELinux Security Policies", level: 90, years: "4 yrs", highlight: "Type enforcement (.te), Domain isolation, Permission controls" },
+        { name: "HAL & JNI Native Layer", level: 88, years: "5 yrs", highlight: "C++ HAL interfaces, JNI bridges, Driver interactions" },
+        { name: "System-Level Debugging", level: 92, years: "6.9 yrs", highlight: "Crash dump analysis, memory leak resolution, logcat/dmesg" }
       ]
     },
     {
@@ -454,12 +454,12 @@ fun buildOptimizedPlayer(context: Context, surfaceView: SurfaceView): ExoPlayer 
       icon: "smartphone",
       description: "Modern Android application architecture, Jetpack, and multithreading",
       items: [
-        { name: "Kotlin & Java", level: 96, years: "5.5 yrs", highlight: "Coroutines, Flow, OOP, Generics, Memory Optimization" },
-        { name: "Architecture Patterns", level: 94, years: "5.5 yrs", highlight: "MVVM, MVP, Clean Architecture, Repository Pattern" },
-        { name: "Jetpack Components", level: 92, years: "5 yrs", highlight: "ViewModel, LiveData, WorkManager, Navigation, CameraX" },
-        { name: "Dependency Injection", level: 90, years: "4 yrs", highlight: "Dagger 2, Hilt, Modular component binding" },
-        { name: "Multithreading & Concurrency", level: 92, years: "5 yrs", highlight: "Kotlin Coroutines, RxJava 2/3, Thread pools, HandlerThread" },
-        { name: "Networking & APIs", level: 94, years: "5.5 yrs", highlight: "Retrofit, OkHttp, WebSockets, REST APIs, JSON" }
+        { name: "Kotlin & Java", level: 96, years: "6.9 yrs", highlight: "Coroutines, Flow, OOP, Generics, Memory Optimization" },
+        { name: "Architecture Patterns", level: 94, years: "6.9 yrs", highlight: "MVVM, MVP, Clean Architecture, Repository Pattern" },
+        { name: "Jetpack Components", level: 92, years: "6 yrs", highlight: "ViewModel, LiveData, WorkManager, Navigation, CameraX" },
+        { name: "Dependency Injection", level: 90, years: "5 yrs", highlight: "Dagger 2, Hilt, Modular component binding" },
+        { name: "Multithreading & Concurrency", level: 92, years: "6 yrs", highlight: "Kotlin Coroutines, RxJava 2/3, Thread pools, HandlerThread" },
+        { name: "Networking & APIs", level: 94, years: "6.9 yrs", highlight: "Retrofit, OkHttp, WebSockets, REST APIs, JSON" }
       ]
     },
     {
@@ -467,11 +467,11 @@ fun buildOptimizedPlayer(context: Context, surfaceView: SurfaceView): ExoPlayer 
       icon: "film",
       description: "Audio/Video pipelines, video decoders, and external hardware",
       items: [
-        { name: "MediaCodec (HW Decoding)", level: 90, years: "3 yrs", highlight: "Low-latency video decoding, SurfaceView rendering" },
-        { name: "ExoPlayer (ABR Streaming)", level: 92, years: "4 yrs", highlight: "HLS, DASH, Adaptive bitrate, Custom MediaSource" },
-        { name: "Android TV & Leanback UI", level: 88, years: "3 yrs", highlight: "10-foot UI, D-pad navigation, Fire TV compatibility" },
-        { name: "Zebra Hardware SDK", level: 85, years: "2 yrs", highlight: "POS barcode scanners, RFID hardware integration" },
-        { name: "WebRTC & P2P Media", level: 84, years: "2.5 yrs", highlight: "Real-time video/voice calling, P2P data channels" }
+        { name: "MediaCodec (HW Decoding)", level: 90, years: "4 yrs", highlight: "Low-latency video decoding, SurfaceView rendering" },
+        { name: "ExoPlayer (ABR Streaming)", level: 92, years: "5 yrs", highlight: "HLS, DASH, Adaptive bitrate, Custom MediaSource" },
+        { name: "Android TV & Leanback UI", level: 88, years: "4 yrs", highlight: "10-foot UI, D-pad navigation, Fire TV compatibility" },
+        { name: "Zebra Hardware SDK", level: 85, years: "3 yrs", highlight: "POS barcode scanners, RFID hardware integration" },
+        { name: "WebRTC & P2P Media", level: 84, years: "3.5 yrs", highlight: "Real-time video/voice calling, P2P data channels" }
       ]
     },
     {
@@ -479,11 +479,11 @@ fun buildOptimizedPlayer(context: Context, surfaceView: SurfaceView): ExoPlayer 
       icon: "tool",
       description: "Persistence layers, version control, and build systems",
       items: [
-        { name: "Room SQLite & Realm", level: 92, years: "5 yrs", highlight: "ORM database schemas, migrations, DAO queries, SQLite" },
-        { name: "Git, SVN & Version Control", level: 94, years: "5.5 yrs", highlight: "Branching strategies, Gerrit code review, PR workflows" },
-        { name: "Google PCTS Suite", level: 92, years: "3 yrs", highlight: "Automated Android Auto compliance, test suite execution" },
-        { name: "JIRA, Jenkins & CI/CD", level: 88, years: "4 yrs", highlight: "Automated test pipelines, Continuous integration, Agile" },
-        { name: "Firebase Suite", level: 90, years: "4 yrs", highlight: "Cloud Messaging (FCM), Realtime DB, Crashlytics, Auth" }
+        { name: "Room SQLite & Realm", level: 92, years: "6 yrs", highlight: "ORM database schemas, migrations, DAO queries, SQLite" },
+        { name: "Git, SVN & Version Control", level: 94, years: "6.9 yrs", highlight: "Branching strategies, Gerrit code review, PR workflows" },
+        { name: "Google PCTS Suite", level: 92, years: "4 yrs", highlight: "Automated Android Auto compliance, test suite execution" },
+        { name: "JIRA, Jenkins & CI/CD", level: 88, years: "5 yrs", highlight: "Automated test pipelines, Continuous integration, Agile" },
+        { name: "Firebase Suite", level: 90, years: "5 yrs", highlight: "Cloud Messaging (FCM), Realtime DB, Crashlytics, Auth" }
       ]
     }
   ],

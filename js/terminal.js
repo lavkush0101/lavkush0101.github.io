@@ -31,7 +31,7 @@ class DeveloperTerminal {
       clear: () => this.cmdClear(),
       whoami: () => `<div class="term-info">guest@lavkush-aosp (Automotive OEM / Recruiter)</div>`,
       date: () => `<div class="term-info">${new Date().toUTCString()}</div>`,
-      uptime: () => `<div class="term-info">5.5+ years production engineering (Harman / AOSP / AAOS)</div>`,
+      uptime: () => `<div class="term-info">6.9+ years production engineering (Harman / AOSP / AAOS)</div>`,
       version: () => `<div class="term-info">aosp-automotive-v14.0-harman (Android Auto & HAL Core)</div>`,
       "sudo hire": () => this.cmdSudoHire()
     };
