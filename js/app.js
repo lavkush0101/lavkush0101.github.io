@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initActiveNavObserver();
 
   // Initialize interactive engines
+  if (window.AutomotiveCockpitSimulator) {
+    window.CockpitSimulator = new window.AutomotiveCockpitSimulator();
+  }
+
   if (window.SystemArchitectureVisualizer) {
     window.ArchitectureVisualizer = new window.SystemArchitectureVisualizer();
   }

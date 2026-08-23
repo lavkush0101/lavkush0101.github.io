@@ -297,9 +297,10 @@ val cacheDataSourceFactory = CacheDataSource.Factory()
       challenge: "Automotive diagnostic modes (Factory Mode, Dealer Mode, Engineering Mode) require direct access to low-level hardware registers, port-wise USB detection, Rear View Camera (RVC) remote displays, and CAN bus switches. Achieving this while maintaining strict Android SELinux domain isolation without compromising system security or causing memory leaks was a critical requirement.",
       solution: "Engineered a modular architecture separating the HMI diagnostic application from the underlying hardware via a dedicated SystemService with AIDL interfaces. Implemented JNI native wrappers over C++ HAL drivers and wrote custom SELinux type enforcement (.te) policies ensuring strict access control and zero IPC permission leaks.",
       architectureHighlights: [
-        "Architected port-wise USB detection and hardware diagnostic sub-systems supporting 60+ test scenarios.",
-        "Integrated Remote Display & Rear View Camera (RVC) hardware feeds with sub-45ms activation latency.",
-        "Authored custom SELinux security policies for Binder IPC and HAL hardware access, achieving full Enforcing mode compliance."
+        "Architected USB port-wise detection (Host/CarPlay/AA & OTG) and full IOC hardware telemetry (Dual-MIC array, VSS speed pulses, HVAC fan steps 1-7, Hardkeys & SWC steering controls).",
+        "Engineered Camera sub-systems: RVC with Static & Dynamic steering guidelines (steering angle sync), SVS 360° bird-eye view, 3D vehicle body color customization, and camera distortion calibration.",
+        "Integrated Audio & Tuner DSP: Arkamys 3D spatial sound staging, Loudness EQ filter, AM/FM RDS auto-scan, and DAB+ Band III digital radio.",
+        "Implemented Safety & Security: Security PIN log gateway, SELinux enforcing policies (.te), S@R content restriction (speed lockout), and logging sub-systems (BT snoop, dmesg, tombstone crash dump extraction)."
       ],
       codeSnippet: {
         language: "kotlin",

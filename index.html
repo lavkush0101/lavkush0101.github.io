@@ -14,6 +14,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/cockpit.css">
   <link rel="stylesheet" href="css/architecture.css">
   <link rel="stylesheet" href="css/terminal.css">
   <link rel="stylesheet" href="css/print.css">
@@ -161,12 +162,12 @@
       <!-- Desktop Nav Links -->
       <nav>
         <ul class="nav-links">
+          <li><a href="#cockpit" class="nav-link">Cockpit IVI</a></li>
           <li><a href="#architecture" class="nav-link">Architecture</a></li>
           <li><a href="#casestudies" class="nav-link">Projects</a></li>
           <li><a href="#terminal" class="nav-link">Terminal</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
           <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#tenets" class="nav-link">Tenets</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -263,6 +264,64 @@
     </div>
   </section>
 
+  <!-- Interactive Automotive IVI Digital Cockpit Simulator -->
+  <section class="cockpit-section" id="cockpit">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Interactive Automotive Cockpit</div>
+        <h2 class="section-title">Automotive IVI & Android Auto Simulator</h2>
+        <p class="section-subtitle">
+          Interactive digital cockpit head unit. Switch between Wireless Android Auto projection, MSIL Maruti Suzuki diagnostic test modes, and AOSP Binder IPC traces.
+        </p>
+      </div>
+
+      <div class="cockpit-wrapper">
+        <!-- Instrument Cluster Telemetry Header -->
+        <div class="cockpit-bezel">
+          <div class="cluster-metrics">
+            <div class="cluster-item">
+              <span>SPEED:</span>
+              <strong id="clusterSpeed">68 km/h</strong>
+            </div>
+            <div class="cluster-item">
+              <span>ENGINE:</span>
+              <strong id="clusterRpm">2350 RPM</strong>
+            </div>
+            <div class="cluster-item">
+              <span>GEAR:</span>
+              <strong style="color: #22c55e;">D (Drive)</strong>
+            </div>
+            <div class="cluster-item">
+              <span>BATTERY:</span>
+              <strong>13.8V</strong>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <span class="can-signal-pill" id="clusterCanPackets">CAN: 0x18DAF110</span>
+            <span class="hud-status-dot"></span>
+          </div>
+        </div>
+
+        <!-- Cockpit Mode Tabs -->
+        <div class="cockpit-tabs">
+          <button class="cockpit-tab-btn active" data-mode="android-auto">
+            <span>📱</span> Android Auto Projection (Wireless)
+          </button>
+          <button class="cockpit-tab-btn" data-mode="msil-diag">
+            <span>🚗</span> MSIL Maruti Diagnostic IVI & RVC
+          </button>
+          <button class="cockpit-tab-btn" data-mode="aosp-ipc">
+            <span>⚡</span> AOSP HAL & SELinux Binder Pipeline
+          </button>
+        </div>
+
+        <!-- Cockpit Touchscreen Stage -->
+        <div class="cockpit-stage" id="cockpitStage"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Interactive System Architecture Visualizer -->
   <section class="arch-visualizer-section" id="architecture">
     <div class="container">
@@ -286,6 +345,12 @@
               <span>⚡</span> 1x Speed
             </button>
           </div>
+        </div>
+
+        <!-- Dynamic Architecture Scenario Description & Metrics Banner -->
+        <div style="background: var(--bg-tertiary); border-bottom: 1px solid var(--border-color); padding: 1rem 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <p id="archScenarioDesc" style="font-size: 0.9rem; color: var(--text-secondary); margin: 0; line-height: 1.5;"></p>
+          <div id="archScenarioMetrics" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;"></div>
         </div>
 
         <!-- Visualizer Stage -->
@@ -574,6 +639,7 @@ LinkedIn: https://www.linkedin.com/in/lavkush-jaiswal-62825a130/
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/theme.js"></script>
+  <script src="js/cockpit.js"></script>
   <script src="js/architecture.js"></script>
   <script src="js/terminal.js"></script>
   <script src="js/resume.js"></script>
