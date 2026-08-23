@@ -1,6 +1,7 @@
 /**
- * Automotive IVI Cockpit & MSIL 60+ Features Simulator
- * Comprehensive In-Vehicle Infotainment Head Unit for Lavkush Jaiswal Portfolio
+ * Automotive IVI Cockpit & Tier-1 OEM Simulator
+ * Dual Circular Gauges, MSIL 60+ Features & Android Auto Engine
+ * For Lavkush Jaiswal Portfolio
  */
 
 class AutomotiveCockpitSimulator {
@@ -25,7 +26,7 @@ class AutomotiveCockpitSimulator {
 
   init() {
     this.bindTabs();
-    this.startClusterTelemetry();
+    this.startDualGaugeSimulation();
     this.renderMode(this.currentMode);
   }
 
@@ -44,20 +45,68 @@ class AutomotiveCockpitSimulator {
     this.renderMode(mode);
   }
 
-  startClusterTelemetry() {
-    const speedEl = document.getElementById("clusterSpeed");
-    const rpmEl = document.getElementById("clusterRpm");
+  startDualGaugeSimulation() {
+    const speedArc = document.getElementById("speedDialArc");
+    const speedVal = document.getElementById("speedDialVal");
+    const rpmArc = document.getElementById("rpmDialArc");
+    const rpmVal = document.getElementById("rpmDialVal");
     const canEl = document.getElementById("clusterCanPackets");
 
+    // Dynamic natural cruising variations
     setInterval(() => {
-      this.speedKmH = (64 + Math.sin(Date.now() / 3000) * 8).toFixed(0);
-      this.rpm = (2200 + Math.sin(Date.now() / 2000) * 280).toFixed(0);
+      if (window.isManualRevving) return;
+
+      this.speedKmH = (65 + Math.sin(Date.now() / 3000) * 7).toFixed(0);
+      this.rpm = (2250 + Math.sin(Date.now() / 2000) * 260).toFixed(0);
       this.canPacketCount += Math.floor(Math.random() * 4) + 1;
 
-      if (speedEl) speedEl.textContent = `${this.speedKmH} km/h`;
-      if (rpmEl) rpmEl.textContent = `${this.rpm} RPM`;
+      this.updateGaugesUI(this.speedKmH, this.rpm);
+
       if (canEl) canEl.textContent = `CAN: 0x18DA${(this.canPacketCount % 9999).toString(16).toUpperCase()}`;
     }, 1200);
+
+    // Bind Accelerator Rev Button
+    const revBtn = document.getElementById("throttleRevBtn");
+    if (revBtn) {
+      const startRev = () => {
+        window.isManualRevving = true;
+        this.updateGaugesUI(128, 6400, true);
+        if (window.UxEngine) window.UxEngine.playHudSound(260, 0.35, "sawtooth");
+        if (window.showToast) window.showToast("🏎️ Throttle Opened: 6400 RPM Redline | CAN Speed Pulse 128 km/h");
+      };
+
+      const stopRev = () => {
+        window.isManualRevving = false;
+        this.updateGaugesUI(68, 2350, false);
+      };
+
+      revBtn.addEventListener("mousedown", startRev);
+      revBtn.addEventListener("mouseup", stopRev);
+      revBtn.addEventListener("mouseleave", stopRev);
+      revBtn.addEventListener("touchstart", startRev);
+      revBtn.addEventListener("touchend", stopRev);
+    }
+  }
+
+  updateGaugesUI(speed, rpm, isRedlining = false) {
+    const speedArc = document.getElementById("speedDialArc");
+    const speedVal = document.getElementById("speedDialVal");
+    const rpmArc = document.getElementById("rpmDialArc");
+    const rpmVal = document.getElementById("rpmDialVal");
+
+    // Speed: 0 to 200 km/h mapped to 200 -> 0 stroke-dashoffset
+    const speedOffset = Math.max(0, 200 - (speed / 200) * 200);
+    // RPM: 0 to 8000 RPM mapped to 200 -> 0 stroke-dashoffset
+    const rpmOffset = Math.max(0, 200 - (rpm / 8000) * 200);
+
+    if (speedVal) speedVal.textContent = speed;
+    if (rpmVal) rpmVal.textContent = (rpm / 1000).toFixed(1) + "k";
+
+    if (speedArc) speedArc.style.strokeDashoffset = speedOffset;
+    if (rpmArc) {
+      rpmArc.style.strokeDashoffset = rpmOffset;
+      rpmArc.style.stroke = isRedlining ? "#ef4444" : "url(#cyanPurpleGrad)";
+    }
   }
 
   renderMode(mode) {
@@ -80,7 +129,6 @@ class AutomotiveCockpitSimulator {
       <div class="msil-master-grid">
         <!-- Left: RVC & SVS 360° Camera Viewport -->
         <div class="camera-viewport" id="cameraViewport">
-          <!-- Animated Dynamic Steering SVG Guidelines -->
           <svg class="guideline-svg" viewBox="0 0 400 300" id="guidelineSvg">
             ${this.generateGuidelinePaths(this.steeringAngle)}
           </svg>
@@ -88,7 +136,7 @@ class AutomotiveCockpitSimulator {
           <div class="sonar-pulse-ring"></div>
 
           <div style="display: flex; justify-content: space-between; align-items: center; z-index: 5;">
-            <span class="can-signal-pill" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #ef4444;">
+            <span class="can-live-pulse-badge" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #ef4444;">
               ● RVC / SVS CAM HAL (ACTIVE)
             </span>
             <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #22c55e; font-weight: bold;">
@@ -107,11 +155,11 @@ class AutomotiveCockpitSimulator {
 
           <!-- SVS 3D Vehicle Body Color Selector -->
           <div class="svs-car-box">
-            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: #cbd5e1;">
-              SVS 3D Body Color:
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #cbd5e1; font-weight: 600;">
+              SVS 3D Vehicle Body Color:
             </span>
             <div class="color-swatches">
-              <button class="swatch-btn ${this.selectedCarColor === '#38bdf8' ? 'active' : ''}" data-color="#38bdf8" style="background: #38bdf8;" title="Nexa Blue"></button>
+              <button class="swatch-btn ${this.selectedCarColor === '#38bdf8' ? 'active' : ''}" data-color="#38bdf8" style="background: #38bdf8;" title="Nexa Blue Metallic"></button>
               <button class="swatch-btn ${this.selectedCarColor === '#f1f5f9' ? 'active' : ''}" data-color="#f1f5f9" style="background: #f1f5f9;" title="Pearl Arctic White"></button>
               <button class="swatch-btn ${this.selectedCarColor === '#64748b' ? 'active' : ''}" data-color="#64748b" style="background: #64748b;" title="Metallic Magma Grey"></button>
               <button class="swatch-btn ${this.selectedCarColor === '#ef4444' ? 'active' : ''}" data-color="#ef4444" style="background: #ef4444;" title="Auburn Red"></button>
@@ -122,10 +170,8 @@ class AutomotiveCockpitSimulator {
         <!-- Right: 60+ Feature IOC & Sub-system Matrix -->
         <div class="ioc-controller-panel">
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h4 style="font-size: 1.05rem; color: #ffffff; margin: 0;">MSIL 60+ Features Diagnostic Hub</h4>
-            <span class="can-signal-pill" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border-color: #38bdf8;">
-              60+ Features Built
-            </span>
+            <h4 style="font-size: 1.1rem; color: #ffffff; margin: 0;">MSIL 60+ Diagnostic Features Hub</h4>
+            <span class="can-live-pulse-badge">60+ Features Built</span>
           </div>
 
           <!-- IOC Category Navigation -->
@@ -153,7 +199,7 @@ class AutomotiveCockpitSimulator {
           <div class="sar-toggle-row">
             <div>
               <span style="color: #ffffff; font-weight: bold;">S@R Content Restriction (Speed Lockout)</span>
-              <div style="font-size: 0.68rem; color: var(--text-muted);">Blocks video & soft keyboard when speed > 5 km/h</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted);">Locks video & soft keyboard when vehicle speed > 5 km/h</div>
             </div>
             <label class="toggle-switch">
               <input type="checkbox" id="sarToggleInput" ${this.sarEnabled ? 'checked' : ''}>
@@ -175,20 +221,27 @@ class AutomotiveCockpitSimulator {
   generateGuidelinePaths(angle) {
     const offset = angle * 2.2;
     return `
+      <defs>
+        <linearGradient id="cyanPurpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#38bdf8" />
+          <stop offset="100%" stop-color="#a855f7" />
+        </linearGradient>
+      </defs>
+
       <!-- Green Safe Zone (3.0m) -->
       <path d="M 120 280 Q ${160 + offset * 0.4} 210, ${180 + offset} 140" class="guideline-path-green" />
       <path d="M 280 280 Q ${240 + offset * 0.4} 210, ${220 + offset} 140" class="guideline-path-green" />
-      <line x1="${180 + offset}" y1="140" x2="${220 + offset}" y2="140" stroke="#22c55e" stroke-width="2" />
+      <line x1="${180 + offset}" y1="140" x2="${220 + offset}" y2="140" stroke="#22c55e" stroke-width="2.5" />
 
       <!-- Yellow Caution Zone (2.0m) -->
       <path d="M 110 280 Q ${150 + offset * 0.6} 230, ${170 + offset * 0.7} 190" class="guideline-path-yellow" />
       <path d="M 290 280 Q ${250 + offset * 0.6} 230, ${230 + offset * 0.7} 190" class="guideline-path-yellow" />
-      <line x1="${170 + offset * 0.7}" y1="190" x2="${230 + offset * 0.7}" y2="190" stroke="#eab308" stroke-width="2.5" />
+      <line x1="${170 + offset * 0.7}" y1="190" x2="${230 + offset * 0.7}" y2="190" stroke="#eab308" stroke-width="3" />
 
       <!-- Red Stop Zone (0.5m) -->
       <path d="M 100 280 Q ${140 + offset * 0.8} 250, ${160 + offset * 0.8} 240" class="guideline-path-red" />
       <path d="M 300 280 Q ${260 + offset * 0.8} 250, ${240 + offset * 0.8} 240" class="guideline-path-red" />
-      <line x1="${160 + offset * 0.8}" y1="240" x2="${240 + offset * 0.8}" y2="240" stroke="#ef4444" stroke-width="3" />
+      <line x1="${160 + offset * 0.8}" y1="240" x2="${240 + offset * 0.8}" y2="240" stroke="#ef4444" stroke-width="3.5" />
     `;
   }
 
@@ -517,7 +570,7 @@ class AutomotiveCockpitSimulator {
               Zero-Trust process isolation from HMI application to Automotive HAL drivers
             </p>
           </div>
-          <span class="can-signal-pill">Binder IPC: 1.2ms</span>
+          <span class="can-live-pulse-badge">Binder IPC: 1.2ms</span>
         </div>
 
         <div class="ipc-pipeline-row">

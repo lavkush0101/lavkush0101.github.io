@@ -276,40 +276,60 @@
       </div>
 
       <div class="cockpit-wrapper">
-        <!-- Instrument Cluster Telemetry Header -->
-        <div class="cockpit-bezel">
-          <div class="cluster-metrics">
-            <div class="cluster-item">
-              <span>SPEED:</span>
-              <strong id="clusterSpeed">68 km/h</strong>
+        <!-- Tier-1 Dual-Gauge Instrument Cluster Header -->
+        <div class="instrument-cluster-bezel">
+          <div class="cluster-gauges-row">
+            <!-- Speedometer Circular Dial -->
+            <div class="gauge-dial-container">
+              <div class="gauge-svg-wrap">
+                <svg class="gauge-svg" viewBox="0 0 76 76">
+                  <circle cx="38" cy="38" r="32" class="gauge-bg-track" />
+                  <circle cx="38" cy="38" r="32" class="gauge-fill-arc" id="speedDialArc" />
+                </svg>
+                <div class="gauge-center-val" id="speedDialVal">68</div>
+              </div>
+              <div class="gauge-meta-info">
+                <span class="gauge-label">VEHICLE SPEED</span>
+                <span class="gauge-sub">km/h (CAN VSS)</span>
+              </div>
             </div>
-            <div class="cluster-item">
-              <span>ENGINE:</span>
-              <strong id="clusterRpm">2350 RPM</strong>
+
+            <!-- Tachometer / RPM Circular Dial -->
+            <div class="gauge-dial-container">
+              <div class="gauge-svg-wrap">
+                <svg class="gauge-svg" viewBox="0 0 76 76">
+                  <circle cx="38" cy="38" r="32" class="gauge-bg-track" />
+                  <circle cx="38" cy="38" r="32" class="gauge-fill-arc" id="rpmDialArc" />
+                </svg>
+                <div class="gauge-center-val" id="rpmDialVal">2.3k</div>
+              </div>
+              <div class="gauge-meta-info">
+                <span class="gauge-label">ENGINE TACHO</span>
+                <span class="gauge-sub">RPM (CAN PWM)</span>
+              </div>
             </div>
-            <div class="cluster-item">
-              <span>GEAR:</span>
-              <strong style="color: #22c55e;">D (Drive)</strong>
-            </div>
-            <div class="cluster-item">
-              <span>BATTERY:</span>
-              <strong>13.8V</strong>
-            </div>
+
+            <!-- Interactive Throttle Accelerator Button -->
+            <button class="throttle-pedal-btn" id="throttleRevBtn" title="Click & Hold to Accelerate CAN Speed Pulse & Engine RPM">
+              <span>🏎️</span>
+              <span>HOLD THROTTLE</span>
+            </button>
           </div>
 
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <span class="can-signal-pill" id="clusterCanPackets">CAN: 0x18DAF110</span>
+          <!-- Status / CAN Stream Right Badge -->
+          <div class="cluster-status-right">
+            <span class="can-live-pulse-badge" id="clusterCanPackets">CAN: 0x18DAF110</span>
             <span class="hud-status-dot"></span>
           </div>
         </div>
 
         <!-- Cockpit Mode Tabs -->
         <div class="cockpit-tabs">
-          <button class="cockpit-tab-btn active" data-mode="android-auto">
-            <span>📱</span> Android Auto Projection (Wireless)
+          <button class="cockpit-tab-btn active" data-mode="msil-diag">
+            <span>🚗</span> MSIL Maruti 60+ Features & RVC
           </button>
-          <button class="cockpit-tab-btn" data-mode="msil-diag">
-            <span>🚗</span> MSIL Maruti Diagnostic IVI & RVC
+          <button class="cockpit-tab-btn" data-mode="android-auto">
+            <span>📱</span> Android Auto Projection (Wireless)
           </button>
           <button class="cockpit-tab-btn" data-mode="aosp-ipc">
             <span>⚡</span> AOSP HAL & SELinux Binder Pipeline
@@ -639,6 +659,7 @@ LinkedIn: https://www.linkedin.com/in/lavkush-jaiswal-62825a130/
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/theme.js"></script>
+  <script src="js/ux-effects.js"></script>
   <script src="js/cockpit.js"></script>
   <script src="js/architecture.js"></script>
   <script src="js/terminal.js"></script>

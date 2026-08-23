@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initActiveNavObserver();
 
   // Initialize interactive engines
+  if (window.PortfolioUxEngine) {
+    window.UxEngine = new window.PortfolioUxEngine();
+  }
+
   if (window.AutomotiveCockpitSimulator) {
     window.CockpitSimulator = new window.AutomotiveCockpitSimulator();
   }

@@ -443,6 +443,7 @@ fun buildOptimizedPlayer(context: Context, surfaceView: SurfaceView): ExoPlayer 
       description: "AOSP, Automotive OS, HAL/AIDL, and system services",
       items: [
         { name: "AOSP & AAOS (Automotive)", level: 95, years: "6.9 yrs", highlight: "AOSP builds, System Services, Framework Internals, HMI" },
+        { name: "C & C++ (Native Development)", level: 90, years: "3 yrs", highlight: "C++17/20, JNI bridges, AOSP native services, HAL implementation, POSIX" },
         { name: "Android Auto (Wired / Wireless)", level: 96, years: "4+ yrs", highlight: "Wi-Fi P2P, USB Accessory, Google PCTS Certification" },
         { name: "AIDL & Binder IPC", level: 94, years: "6.5 yrs", highlight: "Cross-process communication, System Services, IPC Security" },
         { name: "SELinux Security Policies", level: 90, years: "4 yrs", highlight: "Type enforcement (.te), Domain isolation, Permission controls" },
@@ -456,6 +457,7 @@ fun buildOptimizedPlayer(context: Context, surfaceView: SurfaceView): ExoPlayer 
       description: "Modern Android application architecture, Jetpack, and multithreading",
       items: [
         { name: "Kotlin & Java", level: 96, years: "6.9 yrs", highlight: "Coroutines, Flow, OOP, Generics, Memory Optimization" },
+        { name: "C & C++", level: 90, years: "3 yrs", highlight: "Native C/C++ development, NDK, JNI, performance critical code" },
         { name: "Architecture Patterns", level: 94, years: "6.9 yrs", highlight: "MVVM, MVP, Clean Architecture, Repository Pattern" },
         { name: "Jetpack Components", level: 92, years: "6 yrs", highlight: "ViewModel, LiveData, WorkManager, Navigation, CameraX" },
         { name: "Dependency Injection", level: 90, years: "5 yrs", highlight: "Dagger 2, Hilt, Modular component binding" },
