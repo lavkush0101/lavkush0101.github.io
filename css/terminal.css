@@ -1,0 +1,224 @@
+/* ==========================================================================
+   DEVELOPER TERMINAL & INTERACTIVE CLI STYLES
+   ========================================================================== */
+
+.terminal-section {
+  padding: 5rem 0;
+  position: relative;
+}
+
+.terminal-window {
+  max-width: 960px;
+  margin: 0 auto;
+  background: #060910;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), var(--glow-cyan);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Scanlines overlay effect */
+.terminal-window::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 10;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Terminal Titlebar */
+.terminal-titlebar {
+  background: #0d1320;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.terminal-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.term-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.term-btn-close { background: #ff5f56; }
+.term-btn-min { background: #ffbd2e; }
+.term-btn-max { background: #27c93f; }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.terminal-badge {
+  font-size: 0.65rem;
+  background: rgba(var(--accent-cyan-rgb), 0.15);
+  color: var(--accent-cyan);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+.terminal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.term-action-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.term-action-btn:hover {
+  color: var(--accent-cyan);
+  background: var(--bg-tertiary);
+}
+
+/* Terminal Body & Stream */
+.terminal-body {
+  padding: 1.5rem;
+  min-height: 380px;
+  max-height: 520px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.terminal-output {
+  margin-bottom: 1rem;
+}
+
+.term-welcome {
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.term-banner {
+  color: var(--accent-cyan);
+  font-weight: bold;
+  white-space: pre;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  font-size: 0.8rem;
+}
+
+.term-hint {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.term-hint code {
+  color: var(--accent-cyan);
+  background: rgba(var(--accent-cyan-rgb), 0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Command History Line */
+.term-line {
+  margin-bottom: 0.75rem;
+}
+
+.term-cmd-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-primary);
+}
+
+.term-prompt {
+  color: var(--accent-emerald);
+  font-weight: 700;
+}
+
+.term-cmd-text {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.term-result {
+  margin-top: 0.35rem;
+  padding-left: 1.5rem;
+  color: var(--text-secondary);
+}
+
+/* Command Input Prompt Form */
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+}
+
+.term-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: #ffffff;
+  caret-color: var(--accent-cyan);
+}
+
+/* Terminal Formatters */
+.term-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+  font-size: 0.82rem;
+}
+
+.term-table th {
+  text-align: left;
+  color: var(--accent-cyan);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.3rem 0.6rem;
+}
+
+.term-table td {
+  padding: 0.3rem 0.6rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.term-tag {
+  display: inline-block;
+  color: var(--accent-purple);
+  margin-right: 0.5rem;
+}
+
+.term-success { color: var(--accent-emerald); }
+.term-error { color: var(--accent-rose); }
+.term-warn { color: var(--accent-amber); }
+.term-info { color: var(--accent-cyan); }

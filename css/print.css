@@ -1,0 +1,144 @@
+/* ==========================================================================
+   PRINT / PDF EXPORT RESUME STYLESHEET (ATS-FRIENDLY)
+   ========================================================================== */
+
+@media print {
+  /* Hide non-resume interactive elements */
+  .telemetry-hud,
+  .main-header,
+  .bg-grid-overlay,
+  .glow-orb-top,
+  .glow-orb-bottom,
+  .arch-visualizer-section,
+  .terminal-section,
+  .hero-cta-group,
+  .theme-dropdown,
+  .sim-btn,
+  .btn,
+  .toast-container,
+  .contact-section,
+  .main-footer,
+  .code-preview-container {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+    line-height: 1.4;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  }
+
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .hero-section {
+    padding: 0 0 1.5rem 0 !important;
+    border-bottom: 2px solid #333333;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-content {
+    text-align: left !important;
+  }
+
+  .hero-headline {
+    font-size: 24pt !important;
+    color: #111111 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .hero-tagline {
+    font-size: 11pt !important;
+    color: #444444 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .section-header {
+    text-align: left !important;
+    margin-bottom: 1rem !important;
+    border-bottom: 1.5px solid #666666;
+    padding-bottom: 0.25rem;
+  }
+
+  .section-title {
+    font-size: 14pt !important;
+    color: #000000 !important;
+  }
+
+  .section-subtitle, .section-tag {
+    display: none !important;
+  }
+
+  .glass-card, .case-study-card, .skill-card, .timeline-content, .tenet-card, .pub-card, .oss-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 1.25rem !important;
+    page-break-inside: avoid;
+  }
+
+  .timeline-container {
+    padding-left: 0 !important;
+  }
+
+  .timeline-container::before, .timeline-dot {
+    display: none !important;
+  }
+
+  .timeline-role {
+    font-size: 12pt !important;
+    font-weight: bold !important;
+  }
+
+  .timeline-company {
+    font-size: 11pt !important;
+    font-weight: 600 !important;
+    color: #333333 !important;
+  }
+
+  .timeline-period {
+    background: transparent !important;
+    color: #555555 !important;
+    font-size: 10pt !important;
+    padding: 0 !important;
+  }
+
+  .timeline-achievements li {
+    font-size: 10pt !important;
+    color: #222222 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .timeline-achievements li::before {
+    color: #444444 !important;
+  }
+
+  .stats-strip {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    border: 1px solid #cccccc;
+    padding: 0.5rem;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .stat-card {
+    border: none !important;
+    padding: 0.25rem !important;
+  }
+
+  .stat-num {
+    font-size: 14pt !important;
+    color: #000000 !important;
+  }
+
+  .stat-label, .stat-detail {
+    font-size: 8pt !important;
+    color: #444444 !important;
+  }
+}
